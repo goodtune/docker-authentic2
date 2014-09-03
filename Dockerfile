@@ -15,8 +15,11 @@ RUN apt-get clean
 
 WORKDIR /usr/src
 RUN curl --silent https://dev.entrouvert.org/lasso/lasso-2.4.1.tar.gz | tar xzvf -
+
 WORKDIR lasso-2.4.1
 RUN ./autogen.sh --disable-perl --enable-gtk-doc-html=no
 RUN make install clean
+RUN ldconfig
 
+WORKDIR /usr/src
 RUN pip install authentic2
